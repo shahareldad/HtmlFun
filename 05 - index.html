@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <script>
+			var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+			var Months = new Array("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+			var Hours = new Array(24);    // 24 is the size of the array, all values are "undefined"
+			console.log(weekdays[15]);
+			console.dir(weekdays);
+			
+			var myArray = [1,2,3];
+			myArray.push(4,5,6); // myArray will now have the values 1,2,3,4,5,6 in it
+			myArray[6] = 9;
+			myArray[12] = 10;
+			var newArray = [11,12,13];
+			myArray.concat(newArray); // now our array will contain 1,2,3,4,5,6,9,,,,,,10,11,12,13
+			myArray.concat(["Helo", "World", 'a', 'b', 'c']); // now our array will contain 1,2,3,4,5,6,9,,,,,,10,11,12,13, "Hello", "World", 'a', 'b', 'c' => what????
+			newArray.splice(1, 2, 15, 16, 17, 18);
+			console.log(newArray);
+			newArray.pop();
+			console.log(newArray);
+			newArray.splice(2, 1);
+			console.log(newArray);
+			delete newArray[1];
+			console.log(newArray);
+			newArray.shift();
+			console.log(newArray);
+			var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+			console.log("fruits:" + fruits);
+			var citrus = fruits.slice(1);
+			console.log("fruits:" + fruits);
+			console.log("citrus:" + citrus);
+			
+			var anotherNewArray = [5,6,7];
+			console.log(anotherNewArray);
+			anotherNewArray.unshift("amazing"); // now the array will contain the values "amazing",5,6,7
+			console.log(anotherNewArray);
+			
+			var arr = [1,2,3,4,5,6];
+			console.log(arr);
+			var partOfArr = arr.slice(2);
+			console.log(arr);
+			console.log(partOfArr);
+			
+			var fruits20 = ["Banana", "Orange", "Apple", "Mango"];
+			console.log("fruits20: " + fruits20);
+			fruits20.sort();        // First sort the elements of fruits20 
+			console.log("fruits20: " + fruits20);
+			fruits20.reverse();     // Then reverse the order of the elements
+			console.log("fruits20: " + fruits20);
+			
+			//var weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+			for (var index = 0; index < weekdays.length + 1; index++){
+				console.log(weekdays[index]);
+			}
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

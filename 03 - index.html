@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>קוד ראשון ב JS</title>
+        <script>
+            function updateDivElement(value){
+                var myDiv = document.getElementById("content");
+                myDiv.innerText = value;
+            }
+			
+			function sumNumbers(num1, num2){
+				return num1 + num2;
+			}
+        </script>
+    </head>
+    <body>
+		<div id="content"></div>
+		<script>
+			var sum = sumNumbers(4, 6);
+			updateDivElement(sum);
+		</script>
+    </body>
+</html>
+
