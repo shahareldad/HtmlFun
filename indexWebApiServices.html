@@ -1,0 +1,62 @@
+<html>
+	<head>
+		<title>Test page for LadpcWebApiServices</title>
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script>
+			function startScan(){
+				$("#msgToUsr").text("performing scan");
+				$.ajax({
+					method: "GET",
+					url: "http://localhost:8082/Dynamic/Get",
+					data: { appName: "C:\\CLScanner\\CLScanner.Client.exe", appParameters: "FileName:c:\\temp\\shahar.pdf" }
+				}).done(function(msg) {
+				  $("#msgToUsr").text("done");
+				});
+			}
+			function checkFileExists(){
+				$.ajax({
+					method: "GET",
+					url: "http://localhost:8082/FileExists/Get",
+					data: { filename: "c:\\temp\\shahar.pdf" }
+				}).done(function(msg) {
+					  $("#msgToUsr").text(JSON.parse(msg).data);
+				});
+			}
+			function readFile(){
+				$.ajax({
+					method: "GET",
+					url: "http://localhost:8082/ReadFile/Get",
+					data: { filename: "c:\\temp\\1.txt" }
+				}).done(function(msg) {
+				  $("#msgToUsr").text("File content: " + JSON.parse(msg).data);
+				});
+			}
+			function deleteFile(){
+				$.ajax({
+					method: "GET",
+					url: "http://localhost:8082/DeleteFile/Get",
+					data: { filename: "c:\\temp\\shahar.pdf" }
+				}).done(function(msg) {
+					$("#msgToUsr").text(JSON.parse(msg).data);
+				});
+			}
+		</script>
+		<style>
+			button{
+				width: 100px;
+				margin: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<button onclick="return startScan();">Start Scan</button><br/>
+			<button onclick="return checkFileExists();">File Exists</button><br/>
+			<button onclick="return readFile();">Read File</button><br/>
+			<button onclick="return deleteFile();">Delete File</button><br/>
+			<div id="msgToUsr">
+				
+			</div>
+		</div>
+	</body>
+</html>
