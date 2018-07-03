@@ -40,6 +40,15 @@
 					$("#msgToUsr").text(JSON.parse(msg).data);
 				});
 			}
+			function uploadFile(){
+				$.ajax({
+					method: "GET",
+					url: "http://localhost:8082/FileUpload/Get",
+					data: { filename: "c:\\temp\\tt.tif" }
+				}).done(function(msg) {
+					$("#msgToUsr").text(JSON.parse(msg).data);
+				});
+			}
 		</script>
 		<style>
 			button{
@@ -54,6 +63,7 @@
 			<button onclick="return checkFileExists();">File Exists</button><br/>
 			<button onclick="return readFile();">Read File</button><br/>
 			<button onclick="return deleteFile();">Delete File</button><br/>
+			<button onclick="return uploadFile();">Upload File</button><br/>
 			<div id="msgToUsr">
 				
 			</div>
