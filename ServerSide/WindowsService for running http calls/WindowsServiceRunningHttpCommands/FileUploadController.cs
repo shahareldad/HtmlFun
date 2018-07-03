@@ -15,7 +15,7 @@ namespace WindowsServiceRunningHttpCommands
         [HttpGet]
         public string Get(string filename, string url)
         {
-            WriteLog("LadpcWindowsService.FileUploadController.Get fileName: " + filename);
+            WriteLog("WindowsServiceRunningHttpCommands.FileUploadController.Get fileName: " + filename);
 
             try
             {
@@ -40,7 +40,7 @@ namespace WindowsServiceRunningHttpCommands
                 var msg = string.Empty;
                 while (ex != null)
                 {
-                    WriteLog("LadpcWindowsService.FileUploadController.Get Failed: " + ex.Message);
+                    WriteLog("WindowsServiceRunningHttpCommands.FileUploadController.Get Failed: " + ex.Message);
                     msg += ex.Message;
                     ex = ex.InnerException;
                 }
@@ -50,7 +50,7 @@ namespace WindowsServiceRunningHttpCommands
 
         private void WriteLog(string msg)
         {
-            File.AppendAllText(@"c:\temp\LadpcWindowsService.txt", DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss") + ": " + msg + Environment.NewLine);
+            File.AppendAllText(@"c:\temp\WindowsServiceRunningHttpCommands.txt", DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss") + ": " + msg + Environment.NewLine);
         }
     }
 }

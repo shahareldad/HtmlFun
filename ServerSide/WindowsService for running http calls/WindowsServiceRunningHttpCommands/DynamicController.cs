@@ -23,8 +23,8 @@ namespace WindowsServiceRunningHttpCommands
         [HttpGet]
         public string Get(string appName, string appParameters)
         {
-            WriteLog("LadpcWindowsService.DynamicController.Get appName: " + appName);
-            WriteLog("LadpcWindowsService.DynamicController.Get appParameters: " + appParameters);
+            WriteLog("WindowsServiceRunningHttpCommands.DynamicController.Get appName: " + appName);
+            WriteLog("WindowsServiceRunningHttpCommands.DynamicController.Get appParameters: " + appParameters);
 
             try
             {
@@ -33,7 +33,7 @@ namespace WindowsServiceRunningHttpCommands
             }
             catch (Exception ex)
             {
-                WriteLog("LadpcWindowsService.DynamicController.Get Failed: ApplicationLoader: " + ex.Message);
+                WriteLog("WindowsServiceRunningHttpCommands.DynamicController.Get Failed: ApplicationLoader: " + ex.Message);
                 return JsonConvert.SerializeObject(new { result = "failure", data = ex.Message });
             }
 
@@ -71,7 +71,7 @@ namespace WindowsServiceRunningHttpCommands
             }
             catch (Exception ex)
             {
-                WriteLog("LadpcWindowsService.DynamicController.Get Failed: " + ex.Message);
+                WriteLog("WindowsServiceRunningHttpCommands.DynamicController.Get Failed: " + ex.Message);
                 return JsonConvert.SerializeObject(new { result = "failure", data = ex.Message });
             }
         }
@@ -97,7 +97,7 @@ namespace WindowsServiceRunningHttpCommands
 
         private void WriteLog(string msg)
         {
-            File.AppendAllText(@"c:\temp\LadpcWindowsService.txt", DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss") + ": " + msg + Environment.NewLine);
+            File.AppendAllText(@"c:\temp\WindowsServiceRunningHttpCommands.txt", DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss") + ": " + msg + Environment.NewLine);
         }
     }
 }

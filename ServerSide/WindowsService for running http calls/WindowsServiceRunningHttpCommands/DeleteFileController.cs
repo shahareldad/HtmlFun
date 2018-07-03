@@ -14,7 +14,7 @@ namespace WindowsServiceRunningHttpCommands
         [HttpGet]
         public string Get(string filename)
         {
-            WriteLog("LadpcWindowsService.DeleteFileController.Get fileName: " + filename);
+            WriteLog("WindowsServiceRunningHttpCommands.DeleteFileController.Get fileName: " + filename);
 
             try
             {
@@ -23,14 +23,14 @@ namespace WindowsServiceRunningHttpCommands
             }
             catch (Exception ex)
             {
-                WriteLog("LadpcWindowsService.DeleteFileController.Get Failed: " + ex.Message);
+                WriteLog("WindowsServiceRunningHttpCommands.DeleteFileController.Get Failed: " + ex.Message);
                 return JsonConvert.SerializeObject(new { result = "failure", data = ex.Message });
             }
         }
 
         private void WriteLog(string msg)
         {
-            File.AppendAllText(@"c:\temp\LadpcWindowsService.txt", DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss") + ": " + msg + Environment.NewLine);
+            File.AppendAllText(@"c:\temp\WindowsServiceRunningHttpCommands.txt", DateTime.Now.ToString("dd/MM/yyyy hh:mm:ss") + ": " + msg + Environment.NewLine);
         }
     }
 }
