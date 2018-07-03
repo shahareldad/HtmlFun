@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Security;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Security;
 
 namespace WindowsServiceRunningHttpCommands
 {
@@ -53,17 +53,17 @@ namespace WindowsServiceRunningHttpCommands
             public uint dwThreadId;
         }
 
-        #endregion
+        #endregion Structures
 
         #region Enumerations
 
-        enum TOKEN_TYPE : int
+        private enum TOKEN_TYPE : int
         {
             TokenPrimary = 1,
             TokenImpersonation = 2
         }
 
-        enum SECURITY_IMPERSONATION_LEVEL : int
+        private enum SECURITY_IMPERSONATION_LEVEL : int
         {
             SecurityAnonymous = 0,
             SecurityIdentification = 1,
@@ -71,7 +71,7 @@ namespace WindowsServiceRunningHttpCommands
             SecurityDelegation = 3,
         }
 
-        #endregion
+        #endregion Enumerations
 
         #region Constants
 
@@ -84,7 +84,7 @@ namespace WindowsServiceRunningHttpCommands
         public const int HIGH_PRIORITY_CLASS = 0x80;
         public const int REALTIME_PRIORITY_CLASS = 0x100;
 
-        #endregion
+        #endregion Constants
 
         #region Win32 API Imports
 
@@ -92,7 +92,7 @@ namespace WindowsServiceRunningHttpCommands
         private static extern bool CloseHandle(IntPtr hSnapshot);
 
         [DllImport("kernel32.dll")]
-        static extern uint WTSGetActiveConsoleSessionId();
+        private static extern uint WTSGetActiveConsoleSessionId();
 
         [DllImport("advapi32.dll", EntryPoint = "CreateProcessAsUser", SetLastError = true, CharSet = CharSet.Ansi, CallingConvention = CallingConvention.StdCall)]
         public extern static bool CreateProcessAsUser(IntPtr hToken, String lpApplicationName, String lpCommandLine, ref SECURITY_ATTRIBUTES lpProcessAttributes,
@@ -100,7 +100,7 @@ namespace WindowsServiceRunningHttpCommands
             String lpCurrentDirectory, ref STARTUPINFO lpStartupInfo, out PROCESS_INFORMATION lpProcessInformation);
 
         [DllImport("kernel32.dll")]
-        static extern bool ProcessIdToSessionId(uint dwProcessId, ref uint pSessionId);
+        private static extern bool ProcessIdToSessionId(uint dwProcessId, ref uint pSessionId);
 
         [DllImport("advapi32.dll", EntryPoint = "DuplicateTokenEx")]
         public extern static bool DuplicateTokenEx(IntPtr ExistingTokenHandle, uint dwDesiredAccess,
@@ -108,12 +108,12 @@ namespace WindowsServiceRunningHttpCommands
             int ImpersonationLevel, ref IntPtr DuplicateTokenHandle);
 
         [DllImport("kernel32.dll")]
-        static extern IntPtr OpenProcess(uint dwDesiredAccess, bool bInheritHandle, uint dwProcessId);
+        private static extern IntPtr OpenProcess(uint dwDesiredAccess, bool bInheritHandle, uint dwProcessId);
 
         [DllImport("advapi32", SetLastError = true), SuppressUnmanagedCodeSecurityAttribute]
-        static extern bool OpenProcessToken(IntPtr ProcessHandle, int DesiredAccess, ref IntPtr TokenHandle);
+        private static extern bool OpenProcessToken(IntPtr ProcessHandle, int DesiredAccess, ref IntPtr TokenHandle);
 
-        #endregion
+        #endregion Win32 API Imports
 
         /// <summary>
         /// Launches the given application with full admin rights, and in addition bypasses the Vista UAC prompt
@@ -124,7 +124,7 @@ namespace WindowsServiceRunningHttpCommands
         public static bool StartProcessAndBypassUAC(String applicationName, out PROCESS_INFORMATION procInfo)
         {
             uint winlogonPid = 0;
-            IntPtr hUserTokenDup = IntPtr.Zero, hPToken = IntPtr.Zero, hProcess = IntPtr.Zero;            
+            IntPtr hUserTokenDup = IntPtr.Zero, hPToken = IntPtr.Zero, hProcess = IntPtr.Zero;
             procInfo = new PROCESS_INFORMATION();
 
             // obtain the currently active session id; every logged on user in the system has a unique session id
@@ -151,7 +151,7 @@ namespace WindowsServiceRunningHttpCommands
             }
 
             // Security attibute structure used in DuplicateTokenEx and CreateProcessAsUser
-            // I would prefer to not have to use a security attribute variable and to just 
+            // I would prefer to not have to use a security attribute variable and to just
             // simply pass null and inherit (by default) the security attributes
             // of the existing token. However, in C# structures are value types and therefore
             // cannot be assigned the null value.
@@ -168,7 +168,7 @@ namespace WindowsServiceRunningHttpCommands
 
             // By default CreateProcessAsUser creates a process on a non-interactive window station, meaning
             // the window station has a desktop that is invisible and the process is incapable of receiving
-            // user input. To remedy this we set the lpDesktop parameter to indicate we want to enable user 
+            // user input. To remedy this we set the lpDesktop parameter to indicate we want to enable user
             // interaction with the new process.
             STARTUPINFO si = new STARTUPINFO();
             si.cb = (int)Marshal.SizeOf(si);
@@ -185,8 +185,8 @@ namespace WindowsServiceRunningHttpCommands
                                             ref sa,                 // pointer to thread SECURITY_ATTRIBUTES
                                             false,                  // handles are not inheritable
                                             dwCreationFlags,        // creation flags
-                                            IntPtr.Zero,            // pointer to new environment block 
-                                            null,                   // name of current directory 
+                                            IntPtr.Zero,            // pointer to new environment block
+                                            null,                   // name of current directory
                                             ref si,                 // pointer to STARTUPINFO structure
                                             out procInfo            // receives information about new process
                                             );
@@ -198,6 +198,5 @@ namespace WindowsServiceRunningHttpCommands
 
             return result; // return the result
         }
-
     }
 }

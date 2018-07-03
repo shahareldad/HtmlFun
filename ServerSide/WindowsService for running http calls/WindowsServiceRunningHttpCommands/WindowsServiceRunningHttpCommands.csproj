@@ -66,6 +66,7 @@
     <Compile Include="ApplicationLoader.cs" />
     <Compile Include="FileExistsController.cs" />
     <Compile Include="DeleteFileController.cs" />
+    <Compile Include="FileUploadController.cs" />
     <Compile Include="ReadFileController.cs" />
     <Compile Include="ProjectInstaller.cs">
       <SubType>Component</SubType>
