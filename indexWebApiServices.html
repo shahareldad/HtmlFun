@@ -14,15 +14,17 @@
 				});
 			}
 			function checkFileExists(){
+				$("#msgToUsr").text("Checking file exists");
 				$.ajax({
 					method: "GET",
 					url: "http://localhost:8082/FileExists/Get",
-					data: { filename: "c:\\temp\\shahar.pdf" }
+					data: { filename: "c:\\CLScanner\\CLScanner.Client.exe" }
 				}).done(function(msg) {
 					  $("#msgToUsr").text(JSON.parse(msg).data);
 				});
 			}
 			function readFile(){
+				$("#msgToUsr").text("Reading file");
 				$.ajax({
 					method: "GET",
 					url: "http://localhost:8082/ReadFile/Get",
@@ -32,6 +34,7 @@
 				});
 			}
 			function deleteFile(){
+				$("#msgToUsr").text("Deleting file");
 				$.ajax({
 					method: "GET",
 					url: "http://localhost:8082/DeleteFile/Get",
@@ -41,10 +44,11 @@
 				});
 			}
 			function uploadFile(){
+				$("#msgToUsr").text("Uploading file");
 				$.ajax({
 					method: "GET",
 					url: "http://localhost:8082/FileUpload/Get",
-					data: { filename: "c:\\temp\\tt.tif" }
+					data: { filename: "c:\\temp\\tt.tif", url: "http://ecm.ladpc.net.il/ecm-130/DriveU.Intercepted2/RunScanner/Uploader.aspx?scanType=1&IsColor=0&Fallback=0" }
 				}).done(function(msg) {
 					$("#msgToUsr").text(JSON.parse(msg).data);
 				});
