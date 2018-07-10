@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Exercise 02</title>
+		<script>
+			var result = mixJoinArrays(['a','b','c','d'], [1,2,3,4,5,6]);
+			console.log(result);
+			
+			function mixJoinArrays(arr1, arr2){
+				var result = [];
+				var maxLength = Math.max(arr1.length, arr2.length);
+				for(var index = 0; index < maxLength; index++){
+					if (arr1.length > index)
+						result.push(arr1[index]);
+					if (arr2.length > index)
+						result.push(arr2[index]);
+				}
+				return result;
+			}
+		</script>
+    </head>
+    <body>
+		<div id="container"></div>
+    </body>
+</html>

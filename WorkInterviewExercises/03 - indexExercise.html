@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>Exercise 03</title>
+		<script>
+			var result = sortArray([2,1,9,50]);
+			var finalResult = result.join('');
+			console.log(finalResult);
+			
+			function sortArray(arr){
+				return arr.map(item => item.toString()).sort(function(n1,n2){return n1 < n2});
+			}
+		</script>
+    </head>
+    <body>
+		<div id="container"></div>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title>Exercise 01</title>
+		<script>
+			calcUsingRecursion();
+			calcUsingFor();
+			calcUsingMap();
+			
+			function calcUsingRecursion(){
+				var arr = [1,2,3];
+				var recursionFunc = function(arr, index){
+					var localIndex = index;
+					if (arr.length === (localIndex + 1))	// end of recursion
+						return arr[localIndex];
+					return recursionFunc(arr, localIndex + 1) + arr[localIndex];
+				};
+				console.log(recursionFunc(arr, 0));
+			}
+			
+			function calcUsingFor(){
+				var arr = [1,2,3];
+				var sum = 0;
+				for(var index = 0; index < arr.length; index++){
+					sum += arr[index];
+				}
+				console.log(sum);
+			}
+			
+			function calcUsingMap(){
+				var arr = [1,2,3];
+				var sum = 0;
+				arr.map(i => sum += i);
+				console.log(sum);
+			}
+		</script>
+    </head>
+    <body>
+		<div id="container"></div>
+    </body>
+</html>
