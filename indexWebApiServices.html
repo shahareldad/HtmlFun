@@ -8,7 +8,7 @@
 				$.ajax({
 					method: "GET",
 					url: "http://localhost:8082/Dynamic/Get",
-					data: { appName: "C:\\CLScanner\\CLScanner.Client.exe", appParameters: "FileName:c:\\temp\\shahar.pdf" }
+					data: { appName: "C:\\CLScanner\\CLScanner.Client.exe", appParameters: "FileName:c:\\temp\\aaaaa.pdf" }
 				}).done(function(msg) {
 				  $("#msgToUsr").text("done");
 				});
@@ -38,7 +38,7 @@
 				$.ajax({
 					method: "GET",
 					url: "http://localhost:8082/DeleteFile/Get",
-					data: { filename: "c:\\temp\\shahar.pdf" }
+					data: { filename: "c:\\temp\\aaaaa.pdf" }
 				}).done(function(msg) {
 					$("#msgToUsr").text(JSON.parse(msg).data);
 				});
@@ -48,7 +48,7 @@
 				$.ajax({
 					method: "GET",
 					url: "http://localhost:8082/FileUpload/Get",
-					data: { filename: "c:\\temp\\tt.tif", url: "http://ecm.ladpc.net.il/ecm-130/DriveU.Intercepted2/RunScanner/Uploader.aspx?scanType=1&IsColor=0&Fallback=0" }
+					data: { filename: "c:\\temp\\tt.tif", url: "http://www.uploadserver.net.il/Uploader.aspx?scanType=1&IsColor=0&Fallback=0" }
 				}).done(function(msg) {
 					$("#msgToUsr").text(JSON.parse(msg).data);
 				});
