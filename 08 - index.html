@@ -1,0 +1,26 @@
+<html>
+    <head>
+		<meta charset="utf-8"/>
+		<title>Test page</title>
+		<script>
+			function onload(){
+				var box = document.getElementById("inputBox");
+				box.addEventListener("keyup", keyup);
+			}
+			
+			function keyup(e){
+				document.getElementById("copy").innerHTML = document.getElementById("inputBox").value;
+			}
+		</script>
+    </head>
+    <body onload="onload();">
+        <div id="container">
+			<div>
+				<input type="text" id="inputBox"/>
+			</div>
+			<div>
+				<span id="copy"></span>
+			</div>
+		</div>
+    </body>
+</html>
