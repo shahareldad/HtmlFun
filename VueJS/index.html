@@ -1,0 +1,26 @@
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <title>Clash</title>
+   <!-- the star of the show - the Vue library! -->
+   <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
+   <script>
+        // when life is settled, load up the fun stuff
+        document.addEventListener('DOMContentLoaded', function () {
+            new Vue({
+                el: '#sg1',
+                // define data - initial display text
+                data: {
+                    m1: "You got to let me know",
+                },
+            })
+        })
+   </script>
+</head>
+<body>
+   <!-- text and the button -->
+   <div id="sg1">
+        <p>{{ m1 }}</p>
+   </div>
+</body>
+</html>
