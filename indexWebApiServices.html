@@ -3,6 +3,9 @@
 		<title>Test page for LadpcWebApiServices</title>
 		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 		<script>
+			function startScanTo(){
+				document.location.href = "scanto:FileName:c:@temp@aaaaa.pdf&ScanColor:true";
+			}
 			function startScan(){
 				$("#msgToUsr").text("performing scan");
 				$.ajax({
@@ -68,6 +71,8 @@
 			<button onclick="return readFile();">Read File</button><br/>
 			<button onclick="return deleteFile();">Delete File</button><br/>
 			<button onclick="return uploadFile();">Upload File</button><br/>
+			<br/>
+			<button onclick="return startScanTo();">Start Scanto</button><br/>
 			<div id="msgToUsr">
 				
 			</div>
